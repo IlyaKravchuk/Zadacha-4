@@ -12,6 +12,7 @@ namespace ConsoleApplication4
         {
             string s1, s2;
             int k, n;
+            bool r;
             Console.WriteLine("Введите первое слово:");
             s1 = Console.ReadLine();
             Console.WriteLine("Введите второе слово:");
@@ -20,19 +21,22 @@ namespace ConsoleApplication4
                 Console.WriteLine("Нельзя");
             else
             {
-                k = 0;
-                n = s1.Length;
-                while (s2.IndexOf(s1[0]) >= 0)
+                r =false;
+               for (k = 0; k < s2.Length; k++ )
                 {
-                    s2.Remove(s1.IndexOf(s2[0]), 1);
-                    s1.Remove(0, 1);
-                    k = k + 1;
+                    r = false;
+                    for (n = 0; n < s2.Length; n++)
+                        if (s1[k] == s2[n])
+                            r = true;
+                    if (!r)
+                        break;
                 }
-                if (k == n)
-                    Console.WriteLine("Можно");
-                else
-                    Console.WriteLine("Нельзя");
-            }
+
+               if (r == true)
+                   Console.WriteLine("Можно");
+               else
+                   Console.WriteLine("Нельзя");
+        }
             Console.ReadLine();
         }
     }
